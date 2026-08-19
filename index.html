@@ -3,65 +3,101 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Progress Bars</title>
+  <title>داشبورد پیشرفت</title>
   <style>
-    /* استایل‌های پایه و پس‌زمینه کارت */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      background-color: #080d19;
-      font-family: Tahoma, Arial, sans-serif;
+      background-color: #060913;
+      font-family: Tahoma, 'Segoe UI', Geneva, Verdana, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      margin: 0;
-      color: #fff;
+      color: #ffffff;
+      padding: 20px;
     }
 
-    .card {
-      background-color: #0b1329;
-      border: 1px solid #1a294d;
-      border-radius: 16px;
-      padding: 30px;
+    /* کارت اصلی */
+    .container {
+      background-color: #0a1122;
+      border: 1px solid #14213d;
+      border-radius: 20px;
+      padding: 40px 30px 30px 30px;
       width: 100%;
-      max-width: 500px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      max-width: 550px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    /* استایل بخش نوارها */
-    .progress-group {
-      margin-bottom: 20px;
+    /* آیکون بالای بخش */
+    .icon-box {
+      width: 80px;
+      height: 80px;
+      background-color: #0d1b38;
+      border: 1px solid #00d2ff;
+      border-radius: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 35px;
+      box-shadow: 0 0 20px rgba(0, 210, 255, 0.25);
+    }
+
+    .icon-box svg {
+      width: 40px;
+      height: 40px;
+      fill: #00d2ff;
+    }
+
+    /* بخش نوارهای پیشرفت */
+    .skills-wrapper {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .progress-item {
+      margin-bottom: 22px;
     }
 
     .progress-info {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 8px;
-      font-size: 14px;
-      font-weight: bold;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 600;
     }
 
     .percent {
       color: #00d2ff;
+      font-weight: bold;
     }
 
     .progress-bar-bg {
       width: 100%;
-      height: 8px;
-      background-color: #16223d;
+      height: 6px;
+      background-color: #121c33;
       border-radius: 10px;
       overflow: hidden;
-      direction: ltr; /* جهت پر شدن از چپ به راست مطابق تصویر */
+      direction: ltr; /* جهت پر شدن از چپ به راست */
     }
 
     .progress-fill {
       width: 0%;
       height: 100%;
       border-radius: 10px;
-      /* انیمیشن طی ۲ ثانیه اجرا می‌شود و در ۱۰۰٪ باقی می‌ماند */
-      animation: fillUp 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      /* انیمیشن فقط یک بار اجرا شده و در حالت 100% باقی می‌ماند */
+      animation: fillProgress 2s cubic-bezier(0.1, 0.5, 0.1, 1) forwards;
     }
 
-    /* رنگ‌های طیفی برای هر نوار */
+    /* رنگ‌های طیفی نوارهای پیشرفت */
     .fill-1 {
       background: linear-gradient(90deg, #00d2ff, #0072ff);
     }
@@ -74,8 +110,39 @@
       background: linear-gradient(90deg, #7F00FF, #E100FF);
     }
 
-    /* کلیدهای انیمیشن از 0 تا 100 درصد */
-    @keyframes fillUp {
+    /* آمار پایین */
+    .stats-wrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      gap: 15px;
+      border-top: 1px solid #14213d;
+      padding-top: 25px;
+    }
+
+    .stat-card {
+      flex: 1;
+      background-color: #0b162c;
+      border: 1px solid #182848;
+      border-radius: 14px;
+      padding: 15px 10px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: #8a99ad;
+    }
+
+    /* کی‌فریم انیمیشن پر شدن */
+    @keyframes fillProgress {
       from {
         width: 0%;
       }
@@ -87,37 +154,65 @@
 </head>
 <body>
 
-  <div class="card">
-    <!-- آیتم اول -->
-    <div class="progress-group">
-      <div class="progress-info">
-        <span class="percent">100%</span>
-        <span class="label">رندرینگ جلوه‌های بصری</span>
-      </div>
-      <div class="progress-bar-bg">
-        <div class="progress-fill fill-1"></div>
-      </div>
+  <div class="container">
+    <!-- آیکون فیلم -->
+    <div class="icon-box">
+      <svg viewBox="0 0 24 24">
+        <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4h-2l2 4h-3l-2-4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4zM8 17H4v-4h4v4zm0-6H4V7h4v4zm6 6h-4v-4h4v4zm0-6h-4V7h4v4zm6 6h-4v-4h4v4zm0-6h-4V7h4v4z"/>
+      </svg>
     </div>
 
-    <!-- آیتم دوم -->
-    <div class="progress-group">
-      <div class="progress-info">
-        <span class="percent">100%</span>
-        <span class="label">پیشرفت دوره جامع تدوین</span>
+    <!-- نوارهای پیشرفت -->
+    <div class="skills-wrapper">
+      
+      <!-- نوار اول -->
+      <div class="progress-item">
+        <div class="progress-info">
+          <span class="percent">100%</span>
+          <span class="label">رندرینگ جلوه‌های بصری</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-fill fill-1"></div>
+        </div>
       </div>
-      <div class="progress-bar-bg">
-        <div class="progress-fill fill-2"></div>
+
+      <!-- نوار دوم -->
+      <div class="progress-item">
+        <div class="progress-info">
+          <span class="percent">100%</span>
+          <span class="label">پیشرفت دوره جامع تدوین</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-fill fill-2"></div>
+        </div>
       </div>
+
+      <!-- نوار سوم -->
+      <div class="progress-item">
+        <div class="progress-info">
+          <span class="percent">100%</span>
+          <span class="label">تکمیل پروژه‌های فعال</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-fill fill-3"></div>
+        </div>
+      </div>
+
     </div>
 
-    <!-- آیتم سوم -->
-    <div class="progress-group">
-      <div class="progress-info">
-        <span class="percent">100%</span>
-        <span class="label">تکمیل پروژه‌های فعال</span>
+    <!-- آمار و اطلاعات کارت‌های پایین -->
+    <div class="stats-wrapper">
+      <div class="stat-card">
+        <div class="stat-number">1</div>
+        <div class="stat-label">مسیر جامع</div>
       </div>
-      <div class="progress-bar-bg">
-        <div class="progress-fill fill-3"></div>
+      <div class="stat-card">
+        <div class="stat-number">135+</div>
+        <div class="stat-label">پروژه</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">16</div>
+        <div class="stat-label">استاد</div>
       </div>
     </div>
   </div>
