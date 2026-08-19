@@ -36,9 +36,9 @@
                     animation: {
                         'pulse-glow': 'pulseGlow 3s infinite alternate',
                         'float': 'float 5s ease-in-out infinite',
-                        'progress-1': 'progress1 2.5s ease-in-out infinite alternate',
-                        'progress-2': 'progress2 3s ease-in-out infinite alternate',
-                        'progress-3': 'progress3 2s ease-in-out infinite alternate',
+                        'progress-1': 'progressFill 2s ease-out forwards',
+                        'progress-2': 'progressFill 2.2s ease-out forwards',
+                        'progress-3': 'progressFill 1.8s ease-out forwards',
                     },
                     keyframes: {
                         pulseGlow: {
@@ -49,17 +49,9 @@
                             '0%, 100%': { transform: 'translateY(0px)' },
                             '50%': { transform: 'translateY(-6px)' },
                         },
-                        progress1: {
-                            '0%': { width: '30%' },
-                            '100%': { width: '85%' },
-                        },
-                        progress2: {
-                            '0%': { width: '50%' },
-                            '100%': { width: '92%' },
-                        },
-                        progress3: {
-                            '0%': { width: '20%' },
-                            '100%': { width: '68%' },
+                        progressFill: {
+                            '0%': { width: '0%' },
+                            '100%': { width: '100%' },
                         }
                     }
                 }
@@ -267,7 +259,7 @@
                         <div class="space-y-1">
                             <div class="flex justify-between text-[11px] sm:text-xs text-slate-400 font-medium">
                                 <span>رندرینگ جلوه‌های بصری</span>
-                                <span class="text-cyan-400 font-bold">85%</span>
+                                <span class="text-cyan-400 font-bold">100%</span>
                             </div>
                             <div class="w-full h-1.5 sm:h-2 bg-slate-900/90 rounded-full overflow-hidden border border-cyan-500/20">
                                 <div class="h-full bg-gradient-to-l from-brand-neon to-blue-600 rounded-full animate-progress-1 shadow-[0_0_8px_rgba(0,240,255,0.7)]"></div>
@@ -277,7 +269,7 @@
                         <div class="space-y-1">
                             <div class="flex justify-between text-[11px] sm:text-xs text-slate-400 font-medium">
                                 <span>پیشرفت دوره جامع تدوین</span>
-                                <span class="text-cyan-400 font-bold">92%</span>
+                                <span class="text-cyan-400 font-bold">100%</span>
                             </div>
                             <div class="w-full h-1.5 sm:h-2 bg-slate-900/90 rounded-full overflow-hidden border border-cyan-500/20">
                                 <div class="h-full bg-gradient-to-l from-brand-neon to-cyan-300 rounded-full animate-progress-2 shadow-[0_0_8px_rgba(0,240,255,0.7)]"></div>
@@ -287,7 +279,7 @@
                         <div class="space-y-1">
                             <div class="flex justify-between text-[11px] sm:text-xs text-slate-400 font-medium">
                                 <span>تکمیل پروژه‌های فعال</span>
-                                <span class="text-cyan-400 font-bold">68%</span>
+                                <span class="text-cyan-400 font-bold">100%</span>
                             </div>
                             <div class="w-full h-1.5 sm:h-2 bg-slate-900/90 rounded-full overflow-hidden border border-cyan-500/20">
                                 <div class="h-full bg-gradient-to-l from-blue-500 to-indigo-500 rounded-full animate-progress-3 shadow-[0_0_8px_rgba(59,130,246,0.7)]"></div>
